@@ -515,7 +515,7 @@ void copy_rgba_to_rgb__avx2__16pixels(const uint8_t* rgba, uint8_t* rgb, size_t 
             v[1] = _mm256_shuffle_epi8(v[1], shuffle_mask);
 
             // -----------------------------------------------------------------
-            // Store the extracted RGB values (52 bytes will be stored)
+            // Store the extracted RGB values (48 bytes will be stored)
 
             part_128 = _mm256_extracti128_si256(v[0], 0); // Extract low  128-bit part from the 256-bit register
             _mm_storeu_si128(reinterpret_cast<__m128i*>(rgb     ), part_128); // Store 16 bytes in (unaligned) rgb (useful - first 12 bytes, 4 RGB pixels)
@@ -741,7 +741,7 @@ void copy_rgba_to_rgb__avx2__32pixels(const uint8_t* rgba, uint8_t* rgb, size_t 
             v[3] = _mm256_shuffle_epi8(v[3], shuffle_mask);
 
             // -----------------------------------------------------------------
-            // Store the extracted RGB values (100 bytes will be stored)
+            // Store the extracted RGB values (96 bytes will be stored)
 
             part_128 = _mm256_extracti128_si256(v[0], 0); // Extract low  128-bit part from the 256-bit register
             _mm_storeu_si128(reinterpret_cast<__m128i*>(rgb     ), part_128); // Store 16 bytes in (unaligned) rgb (useful - first 12 bytes, 4 RGB pixels)
